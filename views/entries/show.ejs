@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="custom.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Corporate BS Generator | Show Entry</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-dark navbar-expand-sm bg-dark box-shadow">
+      <div class="container d-flex justify-content-between">
+        <a href="/" class="navbar-brand d-flex">C BS Gen</a>
+          <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users/account">Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/entries">Entries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users">Users</a>
+            </li>
+          </ul>
+        </nav>
+  </header>
+
+  <section class="jumbotron mt-4">
+    <div class="container">
+      <h1 class="mb-1"><%= entry.title %></h1>
+      <div class="text-muted mb-2">
+        <%= entry.createdAt.toLocaleDateString() %>
+      </div>
+      <div>
+        <%- entry.sanitizedHtml %>
+      </div>
+        <style>
+          .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-success:focus {
+            background-color: #564147 !important;
+            border-color: #564147;
+            box-shadow: none;
+          }
+        </style>
+        <a href="/entries" class="btn btn-secondary">All Entries</a>
+        <a href="/entries/edit/<%= entry.id %>" class="btn btn-primary">Edit</a>
+    </div>
+  </section>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-success:focus {
+    background-color: #564147 !important;
+    border-color: #564147;
+    box-shadow: none;
+} 
+
+.btn-success, .btn-success:hover, .btn-success:active, .btn-success:focus {
+    background-color: #89595A;
+    border-color: #89595A;
+    box-shadow: none;
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus {
+    background-color: #DF9A63;
+    border-color: #DF9A63;
+    box-shadow: none;
+}
+
+.btn-info, .btn-info:hover, .btn-info:active, .btn-info:focus {
+    background-color: #B97562;
+    border-color: #B97562;
+    box-shadow: none;
+}

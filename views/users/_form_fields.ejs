@@ -1,0 +1,34 @@
+<style>
+    .btn-success, .btn-success:hover, .btn-success:active, .btn-success:focus {
+      background-color: #89595A;
+      border-color: #89595A;
+      box-shadow: none;
+  } 
+  </style>
+  
+  <div class="form-group">
+    <label for="title">First Name</label>
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    <input required value="<%= user.firstName %>" type="text" name="firstName" id="firstName" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="lastName">lastName</label>
+    <textarea name="lastName" id="lastName" class="form-control"><%= user.lastName %></textarea>
+  </div>
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <textarea required name="email" id="email" class="form-control mb-4"><%= user.email %></textarea>
+  </div>
+  <div class="form-group">
+    <label for="Role" class="sr-only">Role</label>
+    <textarea type="role" id="role" class="form-control" name="role"> <%= user.role %> </textarea>
+  </div>
+  <div class="form-group mb-3">
+    <label for="userId" class="sr-only">User ID</label>
+    <textarea type="userId" id="userId" class="form-control" name="userId"> <%= user.id %></textarea>
+  </div>
+
+  <a href="/users" class="btn btn-secondary">Cancel</a>
+  <button type="submit" class="btn btn-success">Save</button>
+
+</div>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="custom.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Corporate BS Generator | Register</title>
+
+ 
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark navbar-expand-sm bg-dark box-shadow">
+            <div class="container d-flex justify-content-between">
+            <a href="/" class="navbar-brand d-flex">C BS Gen</a>
+                <ul class="navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/users/account">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/entries">Entries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users">Users</a>
+                </li>
+                </ul>
+            </nav>
+</header>
+  <main role="main">
+      <div class="container">
+        <div class="col-lg-4">
+            <h1 class="jumbotron-heading mb-4 mt-4">Register</h1>
+                <% if (messages.error) { %>
+                    <%= messages.error %>
+                    <% } %>
+                    <form class="sign-in mb-4" action="/register" method="POST">
+                        <div>
+                            <label for="firstName" class="sr-only">First name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="First name" name="firstName" required autofocus>
+                        </div>
+                        <div>
+                            <label for="lastName" class="sr-only">Last name</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Last name" name="lastName" required autofocus>
+                        </div>
+                        <div>
+                            <label for="Email" class="sr-only">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Email address" name="email" required autofocus>
+                        </div>
+                        <div>
+                            <label for="Password" class="sr-only">Password</label>
+                            <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+                    </form>
+                    <p class="lead text-muted">or</p>
+                <a href="/login" class="btn btn-secondary">Log in with existing account</a>       
+        </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+
+<!-- <footer class="text-muted">
+  <div class="container">
+    <p class="float-right mt-2">
+      <a href="/">Back to top</a>
+    </p>
+    <p>Copyright Nina's team - The Concerner</p>
+  </div>
+</footer> -->
+</html>
+
+

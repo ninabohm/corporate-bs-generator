@@ -1,0 +1,24 @@
+<style>
+  .btn-success, .btn-success:hover, .btn-success:active, .btn-success:focus {
+    background-color: #89595A;
+    border-color: #89595A;
+    box-shadow: none;
+} 
+</style>
+
+<div class="form-group">
+  <label for="title">Title</label>
+  <input type="hidden" name="_csrf" value="{{csrfToken}}">
+  <input required value="<%= entry.title %>" type="text" name="title" id="title" class="form-control">
+</div>
+<div class="form-group">
+  <label for="description">Description</label>
+  <textarea name="description" id="description" class="form-control"><%= entry.description %></textarea>
+</div>
+<div class="form-group">
+  <label for="markdown">Markdown</label>
+  <textarea required name="markdown" id="markdown" class="form-control mb-4"><%= entry.markdown %></textarea>
+</div>
+
+<a href="/entries" class="btn btn-secondary">Cancel</a>
+<button type="submit" class="btn btn-success">Save</button>
