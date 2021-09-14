@@ -68,12 +68,11 @@ function saveEntryAndRedirect(path) {
     try {
       entry = await entry.save();
       res.redirect(`/entries/${entry.id}`);
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
+      console.log(error)
       res.render(`entries/${path}`, { entry: entry });
     }
   }
 }
-
 
 module.exports = router;

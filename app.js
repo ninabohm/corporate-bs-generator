@@ -3,7 +3,6 @@ const app = express();
 const rateLimit = require("express-rate-limit");
 const dotEnv = require("dotenv");
 const helmet = require("helmet");
-const csrf = require("csurf");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const User = require("./models/user");
@@ -82,6 +81,7 @@ app.delete("/logout", (req, res) => {
   req.logOut();
   res.redirect("/login");
 });
+
 
 app.listen(process.env.PORT, () => {
   console.log(`Server up and running on port ${process.env.PORT}`

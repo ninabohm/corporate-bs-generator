@@ -12,37 +12,58 @@ const entryLimiter = rateLimit({
 });
 
 router.get("/", checkIfUserIsAuthenticated, entryLimiter, async(req, res) => {
-    const entries = await Entry.find();
-    const adverbs = filterByWordType(entries, "adverb");
-    const verbs = filterByWordType(entries, "verb");
-    const adjectives = filterByWordType(entries, "adjective");
-    const nouns = filterByWordType(entries, "noun");
-    const adverb = getRandomWord(adverbs);
-    const verb = getRandomWord(verbs);
-    const adjective = getRandomWord(adjectives);
-    const noun = getRandomWord(nouns);
-    
-  res.render("generator/generator-front.ejs", { 
-      adverb: adverb,
-      verb: verb,
-      adjective: adjective,
-      noun: noun
-     });
+    try {
+        let adverbs = await Entry.aggregate([ 
+            { 
+                $match: { wordType: "adverb" } 
+            },
+            {
+                $sample: { size: 1 }
+            }
+        ]);
+        let adverb = adverbs[0].wordContent;
+        
+        let verbs = await Entry.aggregate([ 
+            { 
+                $match: { wordType: "verb" } 
+            },
+            {
+                $sample: { size: 1 }
+            }
+        ]);
+        let verb = verbs[0].wordContent;
+
+        let adjectives = await Entry.aggregate([ 
+            { 
+                $match: { wordType: "adjective" } 
+            },
+            {
+                $sample: { size: 1 }
+            }
+        ]);
+        let adjective = adjectives[0].wordContent;
+
+        let nouns = await Entry.aggregate([ 
+            { 
+                $match: { wordType: "noun" } 
+            },
+            {
+                $sample: { size: 1 }
+            }
+        ]);
+        let noun = nouns[0].wordContent;
+
+        res.render("generator/generator-front.ejs", { 
+            adverb: adverb,
+            verb: verb,
+            adjective: adjective,
+            noun: noun
+           });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("something went wrong");
+    }
 });
 
-function filterByWordType(entries, wordType) {
-    return entries.filter(entry => entry.wordType === wordType);
-}
-
-
-function getRandomWord(filteredWords) {
-    const randomNumber = getRandomInt(1);
-    const randomWord = filteredWords[randomNumber];
-    return randomWord.wordContent;
-}
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
 
 module.exports = router;
