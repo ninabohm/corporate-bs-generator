@@ -52,27 +52,26 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-lg">
+          
             <% entries.forEach(entry => { %>
-              <div class="card mb-4 box-shadow">
-                <div class="card-body">
-                  <div class="card-text mb-2"><%= entry.wordType %></div>
-                  <div class="card-text mb-2"><%= entry.wordContent %></div>
-                  <small class="text-muted">
-                    <%= entry.createdAt.toLocaleDateString() %>
-                  </small>
-                    <div>
-                      <a href="entries/edit/<%= entry.id %>" class="btn btn-sm btn-outline-secondary">Edit</a>
-                      <form action="/entries/<%= entry.id %>?_method=DELETE" method="POST" class="d-inline">
-                        <button class="btn btn-sm btn-outline-secondary">Delete</button>
-                      </form>
-                
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <div class="card-header mb-2"><%= entry.wordContent %></div>
+                    <div class="card-body">
+                        <div class="card-text mb-2"><%= entry.wordType %></div>
+                          <small class="text-muted">
+                            <%= entry.createdAt.toLocaleDateString() %>
+                          </small>
+                      
+                        <a href="entries/edit/<%= entry.id %>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        <form action="/entries/<%= entry.id %>?_method=DELETE" method="POST" class="d-inline">
+                          <button class="btn btn-sm btn-outline-secondary">Delete</button>
+                        </form>
                     </div>
-                </div>
+                  </div>
               </div>
             <% }) %>
           </div>
-          
         </div>
         </div>
       </div>
