@@ -14,15 +14,19 @@ const entryLimiter = rateLimit({
 router.get("/", checkIfUserIsAuthenticated, entryLimiter, async(req, res) => {
     const entries = await Entry.find();
     const adverbs = filterByWordType(entries, "adverb");
-    const randomAdverb = entries.aggregate(
-        [ { $sample: { size: 1 } } ]
-     )
-    console.log(randomAdverb);
+    const verbs = filterByWordType(entries, "verb");
+    const adjectives = filterByWordType(entries, "adjective");
+    const nouns = filterByWordType(entries, "noun");
+    const adverb = getRandomWord(adverbs);
+    const verb = getRandomWord(verbs);
+    const adjective = getRandomWord(adjectives);
+    const noun = getRandomWord(nouns);
+    
   res.render("generator/generator-front.ejs", { 
-      adverb: "enthusiastically",
-      verb: "foster",
-      adjective: "next-generation",
-      noun: "products"
+      adverb: adverb,
+      verb: verb,
+      adjective: adjective,
+      noun: noun
      });
 });
 
@@ -30,9 +34,15 @@ function filterByWordType(entries, wordType) {
     return entries.filter(entry => entry.wordType === wordType);
 }
 
-function pickRandomAdverb(entries) {
-    
+
+function getRandomWord(filteredWords) {
+    const randomNumber = getRandomInt(1);
+    const randomWord = filteredWords[randomNumber];
+    return randomWord.wordContent;
 }
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 
 module.exports = router;
