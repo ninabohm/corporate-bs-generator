@@ -5,7 +5,6 @@ const router = express.Router();
 const { checkIfUserIsAuthenticated, checkIfUserIsNotAuthenticated } = require("../basicAuth");
 const { ROLE } = require("../permissions/roles");
 const { scopeEntries, canViewEntry} = require("../permissions/entry");
-const entry = require("./../models/entry");
 
 const entryLimiter = rateLimit({
   windowMs: 1000,
@@ -64,14 +63,14 @@ router.delete("/:id", checkIfUserIsAuthenticated, entryLimiter, async(req, res) 
 function saveEntryAndRedirect(path) {
   return async(req, res) => {
     let entry = req.entry
-    entry.title = req.body.title
-    entry.description = req.body.description
-    entry.markdown = req.body.markdown
+    entry.wordType = req.body.wordType
     entry.userId = req.user.id
+
     try {
       entry = await entry.save();
       res.redirect(`/entries/${entry.id}`);
     } catch (e) {
+      console.log(e)
       res.render(`entries/${path}`, { entry: entry });
     }
   }

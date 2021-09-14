@@ -6,19 +6,17 @@
 } 
 </style>
 
-<div class="form-group">
-  <label for="title">Title</label>
-  <input type="hidden" name="_csrf" value="{{csrfToken}}">
-  <input required value="<%= entry.title %>" type="text" name="title" id="title" class="form-control">
+
+<div class="input-group mb-4 mt-5">
+  <div class="input-group mb-2">
+    <button class="btn btn-outline-secondary" type="button">Adverb</button>
+    <button class="btn btn-outline-secondary" type="button">Verb</button>
+    <button class="btn btn-outline-secondary" type="button">Adjective</button>
+    <button class="btn btn-outline-secondary" type="button">Noun</button>
+  </div>
+  <input type="text" class="form-control" id="wordContent" name="wordContent" aria-label="wordContent" aria-describedby="basic-addon1" required><%= entry.wordContent %>
 </div>
-<div class="form-group">
-  <label for="description">Description</label>
-  <textarea name="description" id="description" class="form-control"><%= entry.description %></textarea>
-</div>
-<div class="form-group">
-  <label for="markdown">Markdown</label>
-  <textarea required name="markdown" id="markdown" class="form-control mb-4"><%= entry.markdown %></textarea>
-</div>
+
 
 <a href="/entries" class="btn btn-secondary">Cancel</a>
 <button type="submit" class="btn btn-success">Save</button>

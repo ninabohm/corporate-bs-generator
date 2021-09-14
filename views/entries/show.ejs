@@ -13,7 +13,7 @@
   <header>
     <nav class="navbar navbar-dark navbar-expand-sm bg-dark box-shadow">
       <div class="container d-flex justify-content-between">
-        <a href="/" class="navbar-brand d-flex">C BS Gen</a>
+        <a href="/" class="navbar-brand d-flex">CBS Gen</a>
           <ul class="navbar-nav navbar-right">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/">Home</a>
@@ -25,7 +25,7 @@
               <a class="nav-link active" href="/entries">Entries</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users">Users</a>
+              <a class="nav-link" href="/users">Admin</a>
             </li>
           </ul>
         </nav>
@@ -33,12 +33,12 @@
 
   <section class="jumbotron mt-4">
     <div class="container">
-      <h1 class="mb-1"><%= entry.title %></h1>
+      <div class="card-text mb-2"><%= entry.adverb %></div>
+      <div class="card-text mb-2"><%= entry.verb %></div>
+      <div class="card-text mb-2"><%= entry.adjective %></div>
+      <div class="card-text mb-2"><%= entry.noun %></div>
       <div class="text-muted mb-2">
         <%= entry.createdAt.toLocaleDateString() %>
-      </div>
-      <div>
-        <%- entry.sanitizedHtml %>
       </div>
         <style>
           .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-success:focus {

@@ -15,7 +15,7 @@
   <header>
     <nav class="navbar navbar-dark navbar-expand-sm bg-dark box-shadow">
       <div class="container d-flex justify-content-between">
-        <a href="/" class="navbar-brand d-flex">C BS Gen</a>
+        <a href="/" class="navbar-brand d-flex">CBS Gen</a>
           <ul class="navbar-nav navbar-right">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/">Home</a>
@@ -27,7 +27,7 @@
               <a class="nav-link active" href="/entries">Entries</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users">Users</a>
+              <a class="nav-link" href="/users">Admin</a>
             </li>
           </ul>
         </nav>
@@ -37,8 +37,8 @@
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1 class="jumbotron-heading mb-4 mt-4">Concerner Entries</h1>
-        <p class="lead text-muted mb-5">Your Concerner entries. This is a place for you to collect your thoughts. Free your mind from worrying thoughts and center yourself in the now. Simply note down the questions you are asking yourself and haven't found the answer for - yet. </p>
+        <h1 class="jumbotron-heading mb-4 mt-4">Corporate BS Entries Entries</h1>
+        <p class="lead text-muted mb-5">Your Corporate BS entries. Find existing BS or add your favorite terms. Enjoy - and never stop smiling.</p>
       </div>
     </section>
     <section class="jumbotron text-center mb-4">
@@ -56,9 +56,10 @@
             <% entries.forEach(entry => { %>
               <div class="card mb-4 box-shadow">
                 <div class="card-body">
-                  <h4 class="card-title"><%= entry.title %></h4>
-                  
-                  <div class="card-text mb-2"><%= entry.description %></div>
+                  <div class="card-text mb-2"><%= entry.adverb %></div>
+                  <div class="card-text mb-2"><%= entry.verb %></div>
+                  <div class="card-text mb-2"><%= entry.adjective %></div>
+                  <div class="card-text mb-2"><%= entry.noun %></div>
                     
                       <div>
                         <a href="entries/<%= entry.id %>" class="btn btn-sm btn-outline-secondary">Read More</a>
@@ -96,7 +97,7 @@
       <a href="/entries" class="btn btn-sm btn-outline-secondary">Back to top</a>
     </p>
     <div>
-    <p>Copyright Concerner.app - Contact the author on
+    <p>Contact the author on
         <a href="https://www.linkedin.com/in/ninaboehm/">LinkedIn</a>
       </p>
     </div>
