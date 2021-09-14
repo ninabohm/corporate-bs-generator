@@ -41,16 +41,19 @@
         <div class="container">
             <section class="jumbotron jumbotron-fluid mb-4"></section>
                 <div class="container">
-                 <div class="row">
-                    <div class="col-md-8">
-                        <p class="lead">We should ...</p>
-                        <h1 class="display-4">something</h1>            
-                        <div class="mt-4 mb-5">
-                            <a href="/entries/" class="btn btn-primary">Generate new BS</a>
-                            <a href="/entries/create" class="btn btn-success">Add BS term</a>
-                        </div>
-                        </div>
-                    </div>
+                    <p class="lead">We should ...</p>
+                    <h1 class="display-4"> 
+                        <%= adverb %> 
+                        <%= verb %>
+                        <%= adjective %>
+                        <%= noun %>
+                    </h1>            
+                </div>
+            </section>
+            <section>
+                <div class="mt-lg-5 mb-5">
+                    <a href="/generator" class="btn btn-primary">Generate new BS</a>
+                    <a href="/entries/create" class="btn btn-success">Add BS term</a>
                 </div>
             </section>
         </div>  

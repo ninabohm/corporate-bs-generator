@@ -24,6 +24,13 @@ router.post("/", registerLimiter, checkIfUserIsNotAuthenticated, async(req, res,
     next();
 }, saveUserAndRedirect("/"));
 
+router.get("/terms", registerLimiter, checkIfUserIsNotAuthenticated, (req, res) => {
+  res.render("terms.ejs");
+});
+
+router.get("/privacy", registerLimiter, checkIfUserIsNotAuthenticated, (req, res) => {
+  res.render("privacy-policy.ejs");
+});
 
 
 
