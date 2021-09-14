@@ -20,6 +20,9 @@
                   <a class="nav-link" href="/users/account">Account</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="/generator">Genrator</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" href="/entries">Entries</a>
                 </li>
                 <li class="nav-item">
@@ -32,7 +35,7 @@
   <section class="jumbotron mt-4">
     <div class="container">
         <h1 class="mb-4">Create Entry</h1>
-    
+        <p class="lead text-muted mb-2">Choose your word type and enter your new term.</p>
         <form action="/entries" method="POST">
           <%- include('_form_fields') %>
         </form>

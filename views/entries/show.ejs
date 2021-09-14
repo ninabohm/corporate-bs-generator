@@ -22,6 +22,9 @@
               <a class="nav-link" href="/users/account">Account</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/generator">Genrator</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" href="/entries">Entries</a>
             </li>
             <li class="nav-item">
@@ -33,10 +36,8 @@
 
   <section class="jumbotron mt-4">
     <div class="container">
-      <div class="card-text mb-2"><%= entry.adverb %></div>
-      <div class="card-text mb-2"><%= entry.verb %></div>
-      <div class="card-text mb-2"><%= entry.adjective %></div>
-      <div class="card-text mb-2"><%= entry.noun %></div>
+      <div class="card-text mb-2"><%= entry.wordType %></div>
+      <div class="card-text mb-2"><%= entry.wordContent %></div>
       <div class="text-muted mb-2">
         <%= entry.createdAt.toLocaleDateString() %>
       </div>

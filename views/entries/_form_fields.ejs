@@ -6,16 +6,43 @@
 } 
 </style>
 
-
-<div class="input-group mb-4 mt-5">
-  <div class="input-group mb-2">
-    <button class="btn btn-outline-secondary" type="button">Adverb</button>
-    <button class="btn btn-outline-secondary" type="button">Verb</button>
-    <button class="btn btn-outline-secondary" type="button">Adjective</button>
-    <button class="btn btn-outline-secondary" type="button">Noun</button>
-  </div>
-  <input type="text" class="form-control" id="wordContent" name="wordContent" aria-label="wordContent" aria-describedby="basic-addon1" required><%= entry.wordContent %>
+<div class="form-group">
+  <label for="wordType">Word Type</label>
+  <textarea name="wordType" id="wordType" class="form-control"><%= entry.wordType %></textarea>
 </div>
+<div class="form-group">
+  <label for="wordContent">Word Content</label>
+  <textarea name="wordContent" id="wordContent" class="form-control"><%= entry.wordContent %></textarea>
+</div>
+
+<!-- <div class="form-check">
+  <label class="form-check-label" for="verb">Verb</label>
+  <input class="form-check-input" type="radio" name="wordType" id="verb" value="verb">
+  <textarea name="verb" id="verb" class="form-control"><%= entry.wordContent %></textarea>
+</div>
+<div class="form-check">
+  <label class="form-check-label" for="adjective">Adjective</label>
+  <input class="form-check-input" type="radio" name="wordType" id="adjective" value="adjective">
+  <textarea name="adjective" id="adjective" class="form-control"><%= entry.wordContent %></textarea>
+</div>
+<div class="form-check">
+  <label class="form-check-label" for="noun">Noun</label>
+  <input class="form-check-input" type="radio" name="wordType" id="noun" value="noun">
+  <textarea name="noun" id="noun" class="form-control"><%= entry.wordContent %></textarea>
+</div> -->
+<!-- <div>
+  <input type="text" class="form-control mb-2 mt-2" id="wordContent" name="wordContent" aria-label="wordContent" aria-describedby="basic-addon1" required><%= entry.wordContent %>
+</div> -->
+
+<!-- <div class="input-group mb-4 mt-5">
+  <div class="input-group mb-2">
+    <input id="adverb" class="btn btn-outline-secondary" type="radio" value="Adverb">
+    <input class="btn btn-outline-secondary" type="radio" value="Verb">
+    <input class="btn btn-outline-secondary" type="radio" value="Adjective">
+    <input class="btn btn-outline-secondary" type="radio" value="Noun">
+  </div>
+  
+</div> -->
 
 
 <a href="/entries" class="btn btn-secondary">Cancel</a>

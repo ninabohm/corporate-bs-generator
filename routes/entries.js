@@ -3,7 +3,6 @@ const rateLimit = require("express-rate-limit");
 const Entry = require("./../models/entry");
 const router = express.Router();
 const { checkIfUserIsAuthenticated, checkIfUserIsNotAuthenticated } = require("../basicAuth");
-const { ROLE } = require("../permissions/roles");
 const { scopeEntries, canViewEntry} = require("../permissions/entry");
 
 const entryLimiter = rateLimit({
@@ -15,7 +14,7 @@ const entryLimiter = rateLimit({
 router.get("/", checkIfUserIsAuthenticated, entryLimiter, async(req, res) => {
   const entries = await Entry.find().sort({ createdAt: "desc" });
   const scopedEntries = scopeEntries(entries, req.user);
-  res.render("entries/all-entries.ejs", {entries: scopedEntries});
+  res.render("entries/all-entries.ejs", { entries: scopedEntries });
 });
 
 router.get("/create", checkIfUserIsAuthenticated, entryLimiter, (req, res) => {
@@ -35,7 +34,6 @@ router.get("/:id", entryLimiter, checkIfUserIsAuthenticated, async(req, res) => 
     res.status(401);
     return res.send("Unauthorized")
   }
-  
 });
 
 
@@ -64,6 +62,7 @@ function saveEntryAndRedirect(path) {
   return async(req, res) => {
     let entry = req.entry
     entry.wordType = req.body.wordType
+    entry.wordContent = req.body.wordContent
     entry.userId = req.user.id
 
     try {
@@ -75,8 +74,6 @@ function saveEntryAndRedirect(path) {
     }
   }
 }
-
-
 
 
 module.exports = router;

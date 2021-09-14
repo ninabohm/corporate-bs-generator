@@ -7,9 +7,10 @@ const csrf = require("csurf");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const User = require("./models/user");
+const userRouter = require("./routes/users");
 const entryRouter = require("./routes/entries");
 const registerRouter = require("./routes/register");
-const userRouter = require("./routes/users");
+const generatorRouter = require("./routes/generator");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const initializePassport = require("./passport-config");
@@ -59,6 +60,7 @@ app.use(passport.session());
 app.use("/entries", entryRouter);
 app.use("/register", registerRouter);
 app.use("/users", userRouter);
+app.use("/generator", generatorRouter);
 
 app.get('/', (req, res) => {
   res.render("index");
@@ -70,7 +72,7 @@ app.get("/login", checkIfUserIsNotAuthenticated, (req, res) => {
 
 app.post("/login", checkIfUserIsNotAuthenticated, passport.authenticate("local", {
   successMessage: "login successful",
-  successRedirect: "/entries", 
+  successRedirect: "/generator", 
   failureRedirect: "/login",
   failureFlash: true
 }))

@@ -24,6 +24,9 @@
               <a class="nav-link" href="/users/account">Account</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/generator">Genrator</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" href="/entries">Entries</a>
             </li>
             <li class="nav-item">
@@ -34,20 +37,16 @@
   </header>
   
   <main role="main">
-
     <section class="jumbotron text-center">
       <div class="container">
-        <h1 class="jumbotron-heading mb-4 mt-4">Corporate BS Entries Entries</h1>
+        <h1 class="jumbotron-heading mb-4 mt-4">Corporate BS Entries</h1>
         <p class="lead text-muted mb-5">Your Corporate BS entries. Find existing BS or add your favorite terms. Enjoy - and never stop smiling.</p>
       </div>
+      <div class="container text-center mb-5">
+        <a href="/entries/create" class="btn btn-success">Add BS term</a>
+      </div>
     </section>
-    <section class="jumbotron text-center mb-4">
-      <div class="container">
-        <a href="/entries/create" class="btn btn-success">New Entry</a>
-    </section>
-
-                    
-
+    
     <div class="album py-5 bg-light">
       <div class="container">
 
@@ -56,24 +55,18 @@
             <% entries.forEach(entry => { %>
               <div class="card mb-4 box-shadow">
                 <div class="card-body">
-                  <div class="card-text mb-2"><%= entry.adverb %></div>
-                  <div class="card-text mb-2"><%= entry.verb %></div>
-                  <div class="card-text mb-2"><%= entry.adjective %></div>
-                  <div class="card-text mb-2"><%= entry.noun %></div>
-                    
-                      <div>
-                        <a href="entries/<%= entry.id %>" class="btn btn-sm btn-outline-secondary">Read More</a>
-                        <a href="entries/edit/<%= entry.id %>" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <form action="/entries/<%= entry.id %>?_method=DELETE" method="POST" class="d-inline">
-                          <button class="btn btn-sm btn-outline-secondary">Delete</button>
-                        </form>
-                  
-                      </div>
-                  
-                  
+                  <div class="card-text mb-2"><%= entry.wordType %></div>
+                  <div class="card-text mb-2"><%= entry.wordContent %></div>
                   <small class="text-muted">
                     <%= entry.createdAt.toLocaleDateString() %>
                   </small>
+                    <div>
+                      <a href="entries/edit/<%= entry.id %>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                      <form action="/entries/<%= entry.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button class="btn btn-sm btn-outline-secondary">Delete</button>
+                      </form>
+                
+                    </div>
                 </div>
               </div>
             <% }) %>
