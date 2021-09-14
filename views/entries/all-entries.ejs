@@ -56,17 +56,18 @@
             <% entries.forEach(entry => { %>
               <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
-                  <div class="card-header mb-2"><%= entry.wordContent %></div>
+                  <h6 class="card-header mb-2"><%= entry.wordType %></h6>
                     <div class="card-body">
-                        <div class="card-text mb-2"><%= entry.wordType %></div>
+                        <h5 class="card-title mb-2"><%= entry.wordContent %></h5>
                           <small class="text-muted">
                             <%= entry.createdAt.toLocaleDateString() %>
                           </small>
-                      
-                        <a href="entries/edit/<%= entry.id %>" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <form action="/entries/<%= entry.id %>?_method=DELETE" method="POST" class="d-inline">
-                          <button class="btn btn-sm btn-outline-secondary">Delete</button>
-                        </form>
+                        <div>
+                          <a href="entries/edit/<%= entry.id %>" class="btn btn-sm btn-outline-secondary mt-2">Edit</a>
+                          <form action="/entries/<%= entry.id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button class="btn btn-sm btn-outline-secondary mt-2">Delete</button>
+                          </form>
+                        </div>
                     </div>
                   </div>
               </div>
