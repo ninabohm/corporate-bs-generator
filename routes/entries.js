@@ -22,7 +22,7 @@ router.get("/create", checkIfUserIsAuthenticated, entryLimiter, (req, res) => {
   res.render("entries/create.ejs", { entry: entry });
 });
 
-router.get("/:id", entryLimiter, checkIfUserIsAuthenticated, async(req, res) => {
+router.get("/:id", entryLimiter, checkIfUserIsAuthenticated, authGetEntry, async(req, res) => {
   if(!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
     res.status(400);
     return res.send("Bad Request");

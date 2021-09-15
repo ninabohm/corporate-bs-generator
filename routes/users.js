@@ -4,7 +4,8 @@ const rateLimit = require("express-rate-limit");
 const User = require("../models/user");
 const router = express.Router();
 const { checkIfUserIsAuthenticated, checkIfUserIsNotAuthenticated } = require("../basicAuth");
-const { isAdmin } = require("../permissions/user")
+const { isAdmin } = require("../permissions/user");
+const bcrypt = require("bcrypt");
 
 const userLimiter = rateLimit({
   windowMs: 1000,
@@ -29,28 +30,46 @@ router.get("/register", registerLimiter, checkIfUserIsNotAuthenticated, (req, re
 });
 
 router.post("/register", registerLimiter, checkIfUserIsNotAuthenticated, 
+  check("email")
+    .isEmail().withMessage("Please enter a valid email address")
+    .normalizeEmail(),
   check("password")
     .isLength({ min: 6 })
     .withMessage("Your password must be at least 6 characters long"),
-  check("email")
-    .isEmail()
-    .withMessage("Please enter a valid email address")
-    .normalizeEmail(),
-  async(req, res, next) => {
-    const errors = validationResult(req);
-    if(!errors.isEmpty()) {
+    async(req, res, next) => {
+      const errors = validationResult(req);
       const alert = errors.array();
-      try {
-        res.render("users/register", { alert : alert } );
-      } catch (error) {
-        console.log(error);
-      }
-      
-    } else {
-      req.user = new User();
-      next();
-    }
-}, saveUserAndRedirect("login"));
+      User.findOne( { email : req.body.email }, function(error, user) {
+        if (error) {
+          console.log(error)
+        }
+        if (user) {
+          const alreadyExistsError = { 
+            'value' : req.body.email,
+            'msg' : 'An account with this email already exists',
+            'param' : 'email',
+            'location' : 'body'
+          }
+          alert.push(alreadyExistsError);
+          console.log(alert);
+          res.render("users/register" , { alert : alert });
+        } else {
+          if(!errors.isEmpty()) {
+            try {
+              res.render("users/register", { alert : alert } );
+            } catch (error) {
+              console.log(error);
+            }
+            
+          } else {
+            req.user = new User();
+            next();
+          }
+        }
+      });
+  }, saveUserAndRedirect("login"));
+
+
 
 router.get("/register/terms", registerLimiter, checkIfUserIsNotAuthenticated, (req, res) => {
   res.render("terms.ejs");
@@ -106,19 +125,24 @@ function authPutUser(req, res, next) {
   }
 }
 
+
 function saveUserAndRedirect(path) {
   return async(req, res) => {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
     let user = req.user
-    user.role = req.body.role
+    user.role = "basic"
     user.firstName = req.body.firstName
     user.lastName = req.body.lastName
     user.email = req.body.email
+    user.password = hashedPassword
     
     try {
       user = await user.save();
       res.redirect(`/users/${user.id}`);
   
-    } catch (e) {
+    } catch (error) {
+      console.log(error);
       res.render(`users/${path}`, { user: user })
     }
   }
