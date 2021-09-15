@@ -52,7 +52,7 @@ router.post("/register", registerLimiter, checkIfUserIsNotAuthenticated,
           }
           alert.push(alreadyExistsError);
           console.log(alert);
-          res.render("users/register" , { alert : alert });
+          res.render("users/register" , { alert : alert } );
         } else {
           if(!errors.isEmpty()) {
             try {

@@ -34,10 +34,73 @@
 
   <section class="jumbotron mt-4">
     <div class="container">
-      <h1 class="mb-4">Edit Entry</h1>
+      <h1 class="display-5 mb-4">Edit Entry</h1>
 
       <form action="/entries/<%= entry.id %>?_method=PUT" method="POST">
-        <%- include('_form_fields') %>
+        <div class="form-group">
+          <label class="form-check-label" for="wordType">Word Type</label>
+          <textarea name="wordType" id="wordType" class="form-control"><%= entry.wordType %></textarea>
+        </div>
+
+        <!-- <div class="form-check">
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="adverb">
+              <label class="form-check-label" for="wordType">
+                Adverb
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="verb">
+              <label class="form-check-label" for="wordType">
+                Verb
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="adjective">
+              <label class="form-check-label" for="wordType">
+                Adjetive
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="noun">
+              <label class="form-check-label" for="wordType">
+                Noun
+              </label>
+            </div> -->
+        <div class="form-group">
+          <label for="wordContent" class="form-check-label"></label>
+          <textarea name="wordContent" id="wordContent" class="form-control mb-4" required><%= entry.wordContent %></textarea>
+        </div>
+        <div class="form-group">
+          <label for="tag" class="form-check-label"></label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tag" id="tag" value="private" 
+              <% if(entry.tag === "private") { %>
+                <%="checked" %>
+              <% } %>
+            
+            <label class="form-check-label" for="tag">
+              private
+            </label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="radio" name="tag" id="tag" value="public"   
+            <% if(entry.tag === "public") { %>
+              <%="checked" %>
+            <% } %>
+            <% if(entry.tag === "private") { %>
+              <%="disabled" %>
+            <% } %>
+            <label class="form-check-label" for="tag">
+              public (only for admins)
+            </label>
+          </div>
+        </div>
+        
+        
+        <a href="/entries" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-success">Save</button>
       </form>
     </div>
   </section>

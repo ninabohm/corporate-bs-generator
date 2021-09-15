@@ -2,8 +2,9 @@ const express = require("express");
 const rateLimit = require("express-rate-limit");
 const Entry = require("./../models/entry");
 const router = express.Router();
-const { checkIfUserIsAuthenticated, checkIfUserIsNotAuthenticated } = require("../basicAuth");
+const { checkIfUserIsAuthenticated } = require("../basicAuth");
 const { scopeEntries, canViewEntry} = require("../permissions/entry");
+const { check, validationResult } = require("express-validator");
 
 const entryLimiter = rateLimit({
   windowMs: 1000,
@@ -28,12 +29,7 @@ router.get("/:id", entryLimiter, checkIfUserIsAuthenticated, authGetEntry, async
     return res.send("Bad Request");
   }
   const entry = await Entry.findById(req.params.id);
-  if (canViewEntry(entry, req.user)) {
-    res.render("entries/show.ejs", { entry: entry });
-  } else {
-    res.status(401);
-    return res.send("Unauthorized")
-  }
+  res.render("entries/show.ejs", { entry: entry });
 });
 
 
@@ -42,9 +38,23 @@ router.get("/edit/:id", entryLimiter, checkIfUserIsAuthenticated, authGetEntry, 
     res.render("entries/edit.ejs", { entry: entry });
 });
 
-router.post("/", checkIfUserIsAuthenticated, entryLimiter, async(req, res, next) => {
-  req.entry = new Entry();
-  next();
+router.post("/", checkIfUserIsAuthenticated, entryLimiter, 
+  check("wordType")
+    .isIn(["adverb", "verb", "adjective", "noun"])
+    .withMessage("Word type must be adverb, verb, adjective or noun"),
+  async(req, res, next) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      const alert = errors.array();
+      try {
+        res.render("entries/create", { alert : alert } );
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      req.entry = new Entry();
+      next();
+    }
 }, saveEntryAndRedirect("create"));
 
 router.put("/:id", checkIfUserIsAuthenticated, authGetEntry, entryLimiter, async(req, res, next) => {
