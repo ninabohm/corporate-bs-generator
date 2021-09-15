@@ -1,5 +1,4 @@
 function canViewEntry(entry, user) {
-    console.log(entry.userId);
     return (entry.userId === user.id);       
 }
 

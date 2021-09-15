@@ -38,12 +38,18 @@
 
   <main role="main">
     <section class="jumbotron text-center">
-        <h1 class="jumbotron-heading mb-4 mt-4">Your Account</h1>
       <div class="container mt-5">
-          <form action="/logout?_method=DELETE" method="POST">
-              <button class="btn btn-primary" type="submit">Sign out</button>
-          </form>
-           
+        <h1 class="jumbotron-heading mb-4 mt-4">Your Account</h1>
+        <p class="lead text-muted">Hello <%= user.firstName %>, good to see you here!</p>     
+        <span>
+          <p class="lead text-muted">Your account role is 
+            <span class="text-black fw-bold"><%= user.role %>.</span>
+          </p> 
+        </span>
+             
+        <form action="/logout?_method=DELETE" method="POST">
+            <button class="btn btn-primary" type="submit">Sign out</button>
+        </form>
       </div>
       <div>
         <a href="/entries" class="btn btn-secondary mt-4">All entries</a> 

@@ -80,7 +80,8 @@ router.get("/register/privacy", registerLimiter, checkIfUserIsNotAuthenticated, 
 });
 
 router.get("/account", checkIfUserIsAuthenticated, userLimiter, async(req, res) => {
-  res.render("users/account.ejs");
+  const user = req.user
+  res.render("users/account.ejs", {user : user});
 });
 
 router.get("/:id", userLimiter, checkIfUserIsAuthenticated, authGetUser, async(req, res) => {
