@@ -9,6 +9,11 @@ const entrySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  tag: {
+    type: String,
+    required: true,
+    default: "public"
+  },
   createdAt: {
     type: Date,
     default: Date.now

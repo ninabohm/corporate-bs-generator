@@ -63,6 +63,7 @@ function saveEntryAndRedirect(path) {
     let entry = req.entry
     entry.wordType = req.body.wordType
     entry.wordContent = req.body.wordContent
+    entry.tag = req.body.tag
     entry.userId = req.user.id
 
     try {

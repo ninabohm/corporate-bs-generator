@@ -59,6 +59,7 @@
                   <h6 class="card-header mb-2"><%= entry.wordType %></h6>
                     <div class="card-body">
                         <h5 class="card-title mb-2"><%= entry.wordContent %></h5>
+                        <div class="badge badge-secondary bg-dark"><%= entry.tag %></div>
                           <small class="text-muted">
                             <%= entry.createdAt.toLocaleDateString() %>
                           </small>

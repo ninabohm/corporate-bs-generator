@@ -36,11 +36,16 @@
 
   <section class="jumbotron mt-4">
     <div class="container">
-      <div class="card-text mb-2"><%= entry.wordType %></div>
-      <div class="card-text mb-2"><%= entry.wordContent %></div>
-      <div class="text-muted mb-2">
-        <%= entry.createdAt.toLocaleDateString() %>
-      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <h6 class="card-header mb-2"><%= entry.wordType %></h6>
+            <div class="card-body">
+                <h5 class="card-title mb-2"><%= entry.wordContent %></h5>
+                <div class="badge badge-secondary bg-dark"><%= entry.tag %></div>
+                  <small class="text-muted">
+                    <%= entry.createdAt.toLocaleDateString() %>
+                  </small>
+                <div>
         <style>
           .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-success:focus {
             background-color: #564147 !important;
@@ -48,8 +53,8 @@
             box-shadow: none;
           }
         </style>
-        <a href="/entries" class="btn btn-secondary">All Entries</a>
-        <a href="/entries/edit/<%= entry.id %>" class="btn btn-primary">Edit</a>
+        <a href="/entries" class="btn btn-secondary mt-2">All Entries</a>
+        <a href="/entries/edit/<%= entry.id %>" class="btn btn-primary mt-2">Edit</a>
     </div>
   </section>
 </body>
