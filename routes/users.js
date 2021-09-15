@@ -1,6 +1,7 @@
-const express = require('express');
+const express = require("express");
+const { check, validationResult } = require("express-validator");
 const rateLimit = require("express-rate-limit");
-const User = require('../models/user');
+const User = require("../models/user");
 const router = express.Router();
 const { checkIfUserIsAuthenticated, checkIfUserIsNotAuthenticated } = require("../basicAuth");
 const { isAdmin } = require("../permissions/user")
@@ -27,9 +28,24 @@ router.get("/register", registerLimiter, checkIfUserIsNotAuthenticated, (req, re
   res.render("users/register");
 });
 
-router.post("/register", registerLimiter, checkIfUserIsNotAuthenticated, async(req, res, next) => {
-  req.user = new User();
-  next();
+router.post("/register", registerLimiter, checkIfUserIsNotAuthenticated, 
+  check("password")
+      .isLength({ min: 6 })
+      .withMessage("Your password must be at least 2 characters long"),
+  async(req, res, next) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      const alert = errors.array();
+      try {
+        res.render("users/register", { alert : alert } );
+      } catch (error) {
+        console.log(error);
+      }
+      
+    } else {
+      req.user = new User();
+      next();
+    }
 }, saveUserAndRedirect("login"));
 
 router.get("/register/terms", registerLimiter, checkIfUserIsNotAuthenticated, (req, res) => {
@@ -62,6 +78,7 @@ router.get("/edit/:id", userLimiter, checkIfUserIsAuthenticated, authGetUser, as
   const user = await User.findById(req.params.id);
   res.render("users/edit.ejs", { user: user });
 });
+
 
 router.put("/:id", checkIfUserIsAuthenticated, userLimiter, authPutUser, async(req, res, next) => {
   req.user = await User.findById(req.params.id);

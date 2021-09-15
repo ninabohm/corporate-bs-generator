@@ -39,6 +39,18 @@
       <div class="container">
         <div class="col-lg-4">
             <h1 class="jumbotron-heading mb-4 mt-4">Register</h1>
+                <% if(typeof alert != "undefined") { %>
+                    <h1>sending alert</h1>
+                    <!-- <% alert.forEach(function(error) { %>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <%= error.msg %>
+                            <button type="btn-secondary-outline" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                   <% }) %> -->
+                <% } %>
+
                 <% if (messages.error) { %>
                     <%= messages.error %>
                     <% } %>
