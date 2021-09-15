@@ -37,37 +37,45 @@
       <h1 class="display-5 mb-4">Edit Entry</h1>
 
       <form action="/entries/<%= entry.id %>?_method=PUT" method="POST">
-        <div class="form-group">
-          <label class="form-check-label" for="wordType">Word Type</label>
-          <textarea name="wordType" id="wordType" class="form-control"><%= entry.wordType %></textarea>
-        </div>
 
-        <!-- <div class="form-check">
+        <div class="form-check">
           <div class="col-sm-10">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="adverb">
-              <label class="form-check-label" for="wordType">
+              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="adverb"
+              <% if(entry.wordType === "adverb") { %>
+                <%="checked" %>
+              <% } %>
+            <label class="form-check-label" for="wordType">
                 Adverb
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="verb">
+              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="verb"
+              <% if(entry.wordType === "verb") { %>
+                <%="checked" %>
+              <% } %>
               <label class="form-check-label" for="wordType">
                 Verb
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="adjective">
+              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="adjective"
+              <% if(entry.wordType === "adjective") { %>
+                <%="checked" %>
+              <% } %>
               <label class="form-check-label" for="wordType">
                 Adjetive
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="noun">
+              <input class="form-check-input" type="radio" name="wordType" id="wordType" value="noun"
+              <% if(entry.wordType === "noun") { %>
+                <%="checked" %>
+              <% } %>
               <label class="form-check-label" for="wordType">
                 Noun
               </label>
-            </div> -->
+            </div>
         <div class="form-group">
           <label for="wordContent" class="form-check-label"></label>
           <textarea name="wordContent" id="wordContent" class="form-control mb-4" required><%= entry.wordContent %></textarea>
