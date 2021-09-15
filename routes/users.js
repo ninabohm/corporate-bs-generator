@@ -30,8 +30,12 @@ router.get("/register", registerLimiter, checkIfUserIsNotAuthenticated, (req, re
 
 router.post("/register", registerLimiter, checkIfUserIsNotAuthenticated, 
   check("password")
-      .isLength({ min: 6 })
-      .withMessage("Your password must be at least 2 characters long"),
+    .isLength({ min: 6 })
+    .withMessage("Your password must be at least 6 characters long"),
+  check("email")
+    .isEmail()
+    .withMessage("Please enter a valid email address")
+    .normalizeEmail(),
   async(req, res, next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
