@@ -8,7 +8,7 @@ const passport = require("passport");
 const User = require("./models/user");
 const userRouter = require("./routes/users");
 const entryRouter = require("./routes/entries");
-// const registerRouter = require("./routes/register");
+const favicon = require("serve-favicon");
 const generatorRouter = require("./routes/generator");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
@@ -46,6 +46,7 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use(favicon(__dirname + '/public/images/favicon.png'));
 app.use(methodOverride('_method'));
 app.use(flash());
 app.use(session( {
