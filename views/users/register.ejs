@@ -68,11 +68,11 @@
                         </div>
                         <div>
                             <label for="lastName" class="sr-only">Last name</label>
-                            <input type="text" id="lastName" class="form-control" name="lastName" required autofocus>
+                            <input type="text" id="lastName" class="form-control" name="lastName" required>
                         </div>
                         <div>
                             <label for="Email" class="sr-only">Email</label>
-                            <input type="email" id="email" class="form-control" name="email" required autofocus>
+                            <input type="email" id="email" class="form-control" name="email" required>
                         </div>
                         <div>
                             <label for="Password" class="sr-only">Password (min. 6 characters)</label>
@@ -87,11 +87,15 @@
                               <a href="/users/register/privacy">No-Privacy-Policy</a>
                             </label>
                           </div>
-                          <button type="submit" class="btn btn-success btn-block mt-4">Register</button>
-                        </form>
-                       
-                            <p class="lead text-muted">or</p>
-                            <a href="/login" class="btn btn-secondary mb-5">Log in with existing account</a>
+                          
+                            <div class="button-group mt-3">
+                                <button type="submit" class="btn btn-success btn-block">Register</button>
+                                <a href="/login" class="btn btn-secondary">Log in with existing account</a>
+                            
+                                </form>
+                                
+                            
+                        </div>
                         
         </div>
   </main>
