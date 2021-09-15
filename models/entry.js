@@ -12,7 +12,7 @@ const entrySchema = new mongoose.Schema({
   tag: {
     type: String,
     required: true,
-    default: "public"
+    default: "private"
   },
   createdAt: {
     type: Date,

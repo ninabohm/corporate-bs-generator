@@ -37,9 +37,9 @@ router.get("/:id", entryLimiter, checkIfUserIsAuthenticated, async(req, res) => 
 });
 
 
-router.get("/edit/:id", entryLimiter, checkIfUserIsAuthenticated, async(req, res) => {
-  const entry = await Entry.findById(req.params.id);
-  res.render("entries/edit.ejs", { entry: entry });
+router.get("/edit/:id", entryLimiter, checkIfUserIsAuthenticated, authGetEntry, async(req, res) => {
+    const entry = await Entry.findById(req.params.id);
+    res.render("entries/edit.ejs", { entry: entry });
 });
 
 router.post("/", checkIfUserIsAuthenticated, entryLimiter, async(req, res, next) => {
@@ -47,12 +47,12 @@ router.post("/", checkIfUserIsAuthenticated, entryLimiter, async(req, res, next)
   next();
 }, saveEntryAndRedirect("create"));
 
-router.put("/:id", checkIfUserIsAuthenticated, entryLimiter, async(req, res, next) => {
+router.put("/:id", checkIfUserIsAuthenticated, authGetEntry, entryLimiter, async(req, res, next) => {
   req.entry = await Entry.findById(req.params.id);
   next();
 }, saveEntryAndRedirect("edit"));
 
-router.delete("/:id", checkIfUserIsAuthenticated, entryLimiter, async(req, res) => {
+router.delete("/:id", checkIfUserIsAuthenticated, authGetEntry, entryLimiter, async(req, res) => {
   await Entry.findByIdAndDelete(req.params.id);
   res.redirect("/entries");
 })
@@ -73,6 +73,15 @@ function saveEntryAndRedirect(path) {
       console.log(error)
       res.render(`entries/${path}`, { entry: entry });
     }
+  }
+}
+
+async function authGetEntry (req, res, next) {
+  const entry = await Entry.findById(req.params.id);
+  if (canViewEntry(entry, req.user)) {
+    next();
+  } else {
+    res.render("users/unauthorized.ejs")
   }
 }
 
