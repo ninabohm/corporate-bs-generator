@@ -34,8 +34,17 @@ router.get("/:id", entryLimiter, checkIfUserIsAuthenticated, authGetEntry, async
 
 
 router.get("/edit/:id", entryLimiter, checkIfUserIsAuthenticated, authGetEntry, async(req, res) => {
-    const entry = await Entry.findById(req.params.id);
+  if(!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+    res.status(400);
+    return res.send("Bad Request");
+  }
+  const entry = await Entry.findById(req.params.id);
+  try {
     res.render("entries/edit.ejs", { entry: entry });
+  } catch (error) {
+    console.log("error coming from here");
+    console.log(error);
+  }
 });
 
 router.post("/", checkIfUserIsAuthenticated, entryLimiter, 
@@ -44,8 +53,8 @@ router.post("/", checkIfUserIsAuthenticated, entryLimiter,
     .withMessage("Word type must be adverb, verb, adjective or noun"),
   async(req, res, next) => {
     const errors = validationResult(req);
+    const alert = errors.array();
     if(!errors.isEmpty()) {
-      const alert = errors.array();
       try {
         res.render("entries/create", { alert : alert } );
       } catch (error) {

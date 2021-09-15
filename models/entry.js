@@ -7,7 +7,8 @@ const entrySchema = new mongoose.Schema({
   },
   wordContent: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   tag: {
     type: String,
