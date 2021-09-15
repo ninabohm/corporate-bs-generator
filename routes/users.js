@@ -2,7 +2,7 @@ const express = require('express');
 const rateLimit = require("express-rate-limit");
 const User = require('../models/user');
 const router = express.Router();
-const { checkIfUserIsAuthenticated } = require("../basicAuth");
+const { checkIfUserIsAuthenticated, checkIfUserIsNotAuthenticated } = require("../basicAuth");
 const { isAdmin } = require("../permissions/user")
 
 const userLimiter = rateLimit({
@@ -11,12 +11,36 @@ const userLimiter = rateLimit({
   message: "Too many requests. Please try again later."
 });
 
+const registerLimiter = rateLimit({
+  windowMs: 1000,
+  max: 5,
+  message: "Unfortunately, those were too many requests. Please try again later."
+});
+
+
 router.get("/", userLimiter, checkIfUserIsAuthenticated, authGetUser, async(req, res) => {
   const users = await User.find();
   res.render("users/all-users.ejs", { users: users });
 });
 
-router.get("/account", checkIfUserIsAuthenticated, userLimiter, authGetUser, async(req, res) => {
+router.get("/register", registerLimiter, checkIfUserIsNotAuthenticated, (req, res) => {
+  res.render("users/register");
+});
+
+router.post("/register", registerLimiter, checkIfUserIsNotAuthenticated, async(req, res, next) => {
+  req.user = new User();
+  next();
+}, saveUserAndRedirect("login"));
+
+router.get("/register/terms", registerLimiter, checkIfUserIsNotAuthenticated, (req, res) => {
+  res.render("terms.ejs");
+});
+
+router.get("/register/privacy", registerLimiter, checkIfUserIsNotAuthenticated, (req, res) => {
+  res.render("privacy-policy.ejs");
+});
+
+router.get("/account", checkIfUserIsAuthenticated, userLimiter, async(req, res) => {
   res.render("users/account.ejs");
 });
 

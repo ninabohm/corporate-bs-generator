@@ -1,5 +1,3 @@
-const { ROLE } = require("./roles");
-
 function canViewEntry(entry, user) {
     return (entry.userId === user.id);       
 }

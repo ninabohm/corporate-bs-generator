@@ -8,7 +8,7 @@ const passport = require("passport");
 const User = require("./models/user");
 const userRouter = require("./routes/users");
 const entryRouter = require("./routes/entries");
-const registerRouter = require("./routes/register");
+// const registerRouter = require("./routes/register");
 const generatorRouter = require("./routes/generator");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
@@ -57,7 +57,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/entries", entryRouter);
-app.use("/register", registerRouter);
+// app.use("/register", registerRouter);
 app.use("/users", userRouter);
 app.use("/generator", generatorRouter);
 
@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
 });
 
 app.get("/login", checkIfUserIsNotAuthenticated, (req, res) => {
-  res.render("login");
+  res.render("users/login");
 });
 
 app.post("/login", checkIfUserIsNotAuthenticated, passport.authenticate("local", {
