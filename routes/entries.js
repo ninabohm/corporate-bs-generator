@@ -40,7 +40,7 @@ router.get("/edit/:id", entryLimiter, checkIfUserIsAuthenticated, authGetEntry, 
   }
   const entry = await Entry.findById(req.params.id);
   try {
-    res.render("entries/edit.ejs", { entry: entry });
+    res.render("public/entries/edit.ejs", { entry: entry });
   } catch (error) {
     console.log("error coming from here");
     console.log(error);
