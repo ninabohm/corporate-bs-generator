@@ -3,90 +3,65 @@
         <div class="container d-flex justify-content-between">
         <a class="navbar-brand d-flex" href="/" >CBS Gen
             </a>
-            <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a href="/" class="nav-link 
-                    <% if(pageName === "index") { %>
-                        <%= "active" %>
-                    <% } %>
-                    "  
-                >Home
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/users/account" class="nav-link
-                    <% if(pageName === "account" ||
-                            pageName === "login" ||
-                            pageName === "register"
-                    ) { %>
-                        <%= "active" %>
-                    <% } %>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a href="/" class="nav-link 
+                        <% if(pageName === "index") { %>
+                            <%= "active" %>
+                        <% } %>
+                        "  
+                    >Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/users/account" class="nav-link
+                        <% if(pageName === "account" ||
+                                pageName === "login" ||
+                                pageName === "register"
+                        ) { %>
+                            <%= "active" %>
+                        <% } %>
+                        "
+                    >Account
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/generator" class="nav-link
+                        <% if(pageName === "generator-front") { %>
+                            <%= "active" %>
+                        <% } %> 
+                    " 
+                    >Generator</a>
+                </li>
+                <li class="nav-item">
+                    <a  href="/entries" class="nav-link
+                        <% if(pageName === "all-entries" || 
+                                pageName === "show" || 
+                                pageName === "create"
+                                ) { %>
+                            <%= "active" %>
+                        <% } %> 
                     "
-                >Account
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/generator" class="nav-link
-                    <% if(pageName === "generator-front") { %>
-                        <%= "active" %>
-                    <% } %> 
-                " 
-                >Generator</a>
-            </li>
-            <li class="nav-item">
-                <a  href="/entries" class="nav-link
-                    <% if(pageName === "all-entries" || 
-                            pageName === "show" || 
-                            pageName === "create"
-                            ) { %>
-                        <%= "active" %>
-                    <% } %> 
-                "
-                >Entries
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/users" class="nav-link
-                    
-                    <% if(pageName === "all-users" || pageName === "edit") { %>
-                        <%= "active" %>
-                    <% } %> 
-                
-                " 
-                >Admin
-                </a>
-            </li>
+                    >Entries
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/users" class="nav-link
+                        
+                        <% if(pageName === "all-users" || pageName === "edit") { %>
+                            <%= "active" %>
+                        <% } %> 
+                    " 
+                    >Admin
+                    </a>
+                </li>
             </ul>
     </nav>
 </header>
 
 
-
-        <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="m-2">
-            <a class="navbar-brand ml-2" href="/">CBS Gen</a></div>
-        
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="/">Home<span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/users/account">Account</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/generator">Generator</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/entries">Entries</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/users">Admin</a>
-              </li>
-            </ul>
-          </div>
-      </nav> -->
     

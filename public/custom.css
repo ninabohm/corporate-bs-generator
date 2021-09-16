@@ -26,4 +26,14 @@
     border: none;
     box-shadow: 0 0 8px #747372;
 }
+
+/* @media (max-width: 400px) {
+    .navbar-toggler {
+        display: flex;
+    }
+
+    /* .nav-link {
+        display: none;
+    } 
+ }  */
   

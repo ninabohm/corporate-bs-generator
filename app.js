@@ -42,7 +42,6 @@ mongoose
 
 app.use(basicLimiter);
 app.set("view engine", "ejs");
-app.set("views", "./views");
 app.use(cookieParser());
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
@@ -82,13 +81,6 @@ app.delete("/logout", (req, res) => {
   req.logOut();
   res.redirect("/login");
 });
-
-function changeColor(newColor) {
-  var elem = document.getElementById('para');
-  elem.style.color = newColor;
-}
-
-app.use(changeColor);
 
 
 
