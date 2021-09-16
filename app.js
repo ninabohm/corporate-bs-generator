@@ -41,12 +41,13 @@ mongoose
 });
 
 app.use(basicLimiter);
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
+app.set("views", "./views");
 app.use(cookieParser());
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
-app.use(favicon(__dirname + '/public/images/favicon.png'));
+app.use(favicon(__dirname + "/public/images/favicon.png"));
 app.use(methodOverride('_method'));
 app.use(flash());
 app.use(session( {
@@ -58,12 +59,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/entries", entryRouter);
-// app.use("/register", registerRouter);
 app.use("/users", userRouter);
 app.use("/generator", generatorRouter);
 
 app.get('/', (req, res) => {
-  res.render("index");
+  res.render("index.ejs");
 });
 
 app.get("/login", checkIfUserIsNotAuthenticated, (req, res) => {
@@ -82,6 +82,14 @@ app.delete("/logout", (req, res) => {
   req.logOut();
   res.redirect("/login");
 });
+
+function changeColor(newColor) {
+  var elem = document.getElementById('para');
+  elem.style.color = newColor;
+}
+
+app.use(changeColor);
+
 
 
 app.listen(process.env.PORT, () => {

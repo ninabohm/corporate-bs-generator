@@ -1,94 +1,34 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <link rel="stylesheet" href="custom.css">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Corporate BS Generator | Home</title>
-  
- 
-</head>
 
-<body>
+    <%- include("partials/head.ejs") %> 
 
-  <header>
-    <!-- <nav class="navbar navbar-dark navbar-expand-sm bg-dark box-shadow">
-      <div class="container d-flex justify-content-between">
-        <a class="navbar-brand d-flex" href="/" >CBS Gen
-          </a>
-          <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/account">Account</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/generator">Generator</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/entries">Entries</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users">Admin</a>
-            </li>
-          </ul>
-        </nav> -->
+    <body>
 
+        <%- include("partials/navbar.ejs", { pageName : "index" }) %>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="m-2">
-            <a class="navbar-brand ml-2" href="/">CBS Gen</a></div>
-        
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="/">Home<span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/users/account">Account</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/generator">Generator</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/entries">Entries</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/users">Admin</a>
-              </li>
-            </ul>
-          </div>
-      </nav>
+    <main role="main">
+
+        <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="display-5 mb-4 mt-4">Welcome to the Corporate BS Generator!</h1>
+            <p class="lead text-muted mb-5">This is a place for you to collect your BS. Find existing BS or add your favorite terms. Enjoy - and never stop smiling.</p>
+                <a href="/login" class="btn btn-primary">Login</a>
+                <a href="/users/register" class="btn btn-secondary">Register</a>       
+        </section>
+
+    </main>
+
+        <%- include("partials/script.ejs") %>
+
+        <script>
+            $(".nav .nav-link").on("click", function(){
+                 $(".nav").find(".active").removeClass("active");
+                 $(this).addClass("active");
+         });
+         </script>
     
-
-
-
-
-  </header>
-
-  <main role="main">
-
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="display-5 mb-4 mt-4">Welcome to the Corporate BS Generator!</h1>
-        <p class="lead text-muted mb-5">This is a place for you to collect your BS. Find existing BS or add your favorite terms. Enjoy - and never stop smiling.</p>
-              <a href="/login" class="btn btn-primary">Login</a>
-              <a href="/users/register" class="btn btn-secondary">Register</a>       
-    </section>
-
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-</body>
-
+    </body>
 </html>
 

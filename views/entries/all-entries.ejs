@@ -12,30 +12,9 @@
 </head>
 
 <body>
-  <header>
-    <nav class="navbar navbar-dark navbar-expand-sm bg-dark box-shadow">
-      <div class="container d-flex justify-content-between">
-        <a href="/" class="navbar-brand d-flex">CBS Gen</a>
-          <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/account">Account</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/generator">Generator</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/entries">Entries</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users">Admin</a>
-            </li>
-          </ul>
-        </nav>
-  </header>
-  
+
+  <%- include("../partials/navbar.ejs", { pageName : "all-entries" }) %>
+
   <main role="main">
     <section class="jumbotron text-center">
       <div class="container">
