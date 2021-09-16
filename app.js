@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
+
 const rateLimit = require("express-rate-limit");
 const dotEnv = require("dotenv");
 const helmet = require("helmet");
-const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
+//const database = require("./database")
 const passport = require("passport");
 const User = require("./models/user");
 const userRouter = require("./routes/users");
@@ -17,11 +19,7 @@ const flash = require("express-flash");
 const session = require("express-session");
 const { checkIfUserIsNotAuthenticated } = require("./basicAuth")
 
-initializePassport(
-  passport, 
-  email =>  User.find(user => user.email === email),
-  id => User.find(user => user.id === id)
-);
+dotEnv.config();
 
 const basicLimiter = rateLimit({
   windowMs: 1000,
@@ -30,18 +28,8 @@ const basicLimiter = rateLimit({
 });
 
 
-dotEnv.config();
-
-mongoose
-.connect(
-  process.env.MONGODB_URI,{
-  useNewUrlParser: true, 
-  useUnifiedTopology: true,
-  useCreateIndex: true
-});
-
-app.use(basicLimiter);
 app.set("view engine", "ejs");
+app.use(basicLimiter);
 app.use(cookieParser());
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
@@ -54,6 +42,12 @@ app.use(session( {
   resave: false,
   saveUninitialized: false
 }))
+
+initializePassport(
+  passport, 
+  email =>  User.find(user => user.email === email),
+  id => User.find(user => user.id === id)
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -83,7 +77,26 @@ app.delete("/logout", (req, res) => {
 });
 
 
+// app.on('ready', function() { 
+//   app.listen(process.env.PORT, () => { 
+//       console.log(`Server up and running on port ${process.env.PORT}`); 
+//   }); 
+// }); 
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server up and running on port ${process.env.PORT}`
-)});
+
+// mongoose
+// .connect(
+//   process.env.MONGODB_URI,{
+//   useNewUrlParser: true, 
+//   useUnifiedTopology: true,
+//   useCreateIndex: true
+// }, () => {
+//   console.log("Connected to db")
+// });
+
+// mongoose.connection.once('open', () => { 
+//   app.emit('ready'); 
+// })
+
+
+module.exports = app;
