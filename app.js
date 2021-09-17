@@ -47,6 +47,7 @@ initializePassport(
   email =>  User.find(user => user.email === email),
   id => User.find(user => user.id === id)
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -59,27 +60,27 @@ app.get('/', (req, res) => {
   res.render("index.ejs");
 });
 
-// app.on('ready', function() { 
-//   app.listen(process.env.PORT, () => { 
-//       console.log(`Server up and running on port ${process.env.PORT}`); 
-//   }); 
-// }); 
+app.on('ready', function() { 
+  app.listen(process.env.PORT, () => { 
+      console.log(`Server up and running on port ${process.env.PORT}`); 
+  }); 
+}); 
 
 
-// mongoose
-// .connect(
-//   process.env.MONGODB_URI,{
-//   useNewUrlParser: true, 
-//   useUnifiedTopology: true,
-//   useCreateIndex: true
-// }, () => {
-//   console.log("Connected to db")
-// });
+mongoose
+.connect(
+  process.env.MONGODB_URI,{
+  useNewUrlParser: true, 
+  useUnifiedTopology: true,
+  useCreateIndex: true
+}, () => {
+  console.log("Connected to db")
+});
 
-// mongoose.connection.once('open', () => { 
-//   app.emit('ready'); 
-// })
+mongoose.connection.once('open', () => { 
+  app.emit('ready'); 
+})
 
 exports.initializePassport = initializePassport;
 
-module.exports = app;
+//module.exports = app;
