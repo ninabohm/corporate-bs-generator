@@ -20,7 +20,7 @@ function initialize(passport) {
             .then(user => {
                 if (!user) {
                     return done(null, false, { message: "Don't have an account yet? Register now!" });
-                } else {     
+                } else {    
                     bcrypt.compare(password, user.password, (err, isMatch) => {
                         if (err) throw err;
 
@@ -35,8 +35,6 @@ function initialize(passport) {
         })
     );
 }
-
-
 
     
 module.exports = initialize;

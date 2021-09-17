@@ -1,23 +1,22 @@
 const express = require("express");
 const app = express();
-
-const rateLimit = require("express-rate-limit");
 const dotEnv = require("dotenv");
 const helmet = require("helmet");
-//const mongoose = require("mongoose");
-//const database = require("./database")
+const mongoose = require("mongoose");
+const rateLimit = require("express-rate-limit");
 const passport = require("passport");
+const initializePassport = require("./passport-config");
 const User = require("./models/user");
 const userRouter = require("./routes/users");
 const entryRouter = require("./routes/entries");
-const favicon = require("serve-favicon");
 const generatorRouter = require("./routes/generator");
+const loginRouter = require('./routes/login');
+const favicon = require("serve-favicon");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
-const initializePassport = require("./passport-config");
 const flash = require("express-flash");
 const session = require("express-session");
-const { checkIfUserIsNotAuthenticated } = require("./basicAuth")
+
 
 dotEnv.config();
 
@@ -51,6 +50,7 @@ initializePassport(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/login", loginRouter);
 app.use("/entries", entryRouter);
 app.use("/users", userRouter);
 app.use("/generator", generatorRouter);
@@ -58,24 +58,6 @@ app.use("/generator", generatorRouter);
 app.get('/', (req, res) => {
   res.render("index.ejs");
 });
-
-app.get("/login", checkIfUserIsNotAuthenticated, (req, res) => {
-  res.render("users/login");
-});
-
-app.post("/login", checkIfUserIsNotAuthenticated, passport.authenticate("local", {
-  successMessage: "login successful",
-  successRedirect: "/generator", 
-  failureRedirect: "/login",
-  failureFlash: true
-}))
-
-
-app.delete("/logout", (req, res) => {
-  req.logOut();
-  res.redirect("/login");
-});
-
 
 // app.on('ready', function() { 
 //   app.listen(process.env.PORT, () => { 
@@ -98,5 +80,6 @@ app.delete("/logout", (req, res) => {
 //   app.emit('ready'); 
 // })
 
+exports.initializePassport = initializePassport;
 
 module.exports = app;

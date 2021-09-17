@@ -111,6 +111,11 @@ router.put("/:id", checkIfUserIsAuthenticated, userLimiter, authPutUser, async(r
 }, saveUserAndRedirect("edit"))
 
 
+router.delete("/logout", (req, res) => {
+  req.logOut();
+  res.redirect("/login");
+});
+
 function authGetUser(req, res, next) {
   if (isAdmin(req.user)) {
     next();
