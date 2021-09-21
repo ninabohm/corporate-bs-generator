@@ -21,7 +21,7 @@ const session = require("express-session");
 dotEnv.config();
 
 app.set("view engine", "ejs");
-app.use(basicLimiter);
+
 app.use(cookieParser());
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
@@ -41,6 +41,8 @@ const basicLimiter = rateLimit({
   max: 5,
   message: "Unfortunately, those were too many requests. Please try again later."
 });
+
+app.use(basicLimiter);
 
 initializePassport(
   passport, 
