@@ -20,13 +20,6 @@ const session = require("express-session");
 
 dotEnv.config();
 
-const basicLimiter = rateLimit({
-  windowMs: 1000,
-  max: 5,
-  message: "Unfortunately, those were too many requests. Please try again later."
-});
-
-
 app.set("view engine", "ejs");
 app.use(basicLimiter);
 app.use(cookieParser());
@@ -36,11 +29,18 @@ app.use(express.static("public"));
 app.use(favicon(__dirname + "/public/images/favicon.png"));
 app.use(methodOverride('_method'));
 app.use(flash());
+
 app.use(session( {
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }))
+
+const basicLimiter = rateLimit({
+  windowMs: 1000,
+  max: 5,
+  message: "Unfortunately, those were too many requests. Please try again later."
+});
 
 initializePassport(
   passport, 
@@ -81,6 +81,3 @@ mongoose.connection.once('open', () => {
   app.emit('ready'); 
 })
 
-exports.initializePassport = initializePassport;
-
-//module.exports = app;
