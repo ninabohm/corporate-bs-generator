@@ -21,7 +21,7 @@
     "csurf": "^1.11.0",
     "dompurify": "^2.3.1",
     "dotenv": "^10.0.0",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.7",
     "ejs-lint": "^1.2.1",
     "express": "^4.17.1",
     "express-flash": "^0.0.2",
