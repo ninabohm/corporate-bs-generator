@@ -19,7 +19,7 @@
     "bootstrap": "^5.1.0",
     "cookie-parser": "^1.4.5",
     "csurf": "^1.11.0",
-    "dompurify": "^2.3.1",
+    "dompurify": "^2.3.3",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.7",
     "ejs-lint": "^1.2.1",
