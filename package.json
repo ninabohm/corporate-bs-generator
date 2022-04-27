@@ -38,7 +38,7 @@
     "passport-local": "^1.0.0",
     "random-number-csprng-2": "^2.0.0",
     "serve-favicon": "^2.5.0",
-    "slugify": "^1.6.0",
+    "slugify": "^1.6.5",
     "supertest": "^6.1.6"
   },
   "devDependencies": {
